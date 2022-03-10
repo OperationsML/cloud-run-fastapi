@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM gcr.io/deeplearning-platform-release/tf-cpu.2-6
 
 ENV PYTHONUNBUFFERED True
 
@@ -8,5 +8,5 @@ COPY . ./
 
 RUN pip install -r requirements.txt
 
-CMD exec gunicorn --bind :$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker  --threads 8 main:app
+CMD exec gunicorn --bind :$PORT --workers 4 --worker-class uvicorn.workers.UvicornWorker  --threads 8 main:app
 
